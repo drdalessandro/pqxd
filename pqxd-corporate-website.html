@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PQxD - Paciente Quirúrgico Digital | Innovación en Salud Cardiovascular</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+        }
+
+        .gradient-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.1) 0%, transparent 50%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero {
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 4rem;
+            font-weight: 900;
+            letter-spacing: -2px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .logo .q {
+            color: #ff4757;
+            font-size: 4.5rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero .subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-primary {
+            background: linear-gradient(45deg, #ff4757, #ff3742);
+            color: white;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 8px 25px rgba(255, 71, 87, 0.3);
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 71, 87, 0.4);
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: #2c3e50;
+            font-weight: 700;
+        }
+
+        .metrics {
+            background: #f8f9fa;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            padding: 60px 0;
+        }
+
+        .metric-card {
+            text-align: center;
+            background: white;
+            padding: 40px 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .metric-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .metric-label {
+            font-size: 1.1rem;
+            color: #666;
+            font-weight: 600;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            border-left: 5px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .feature-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .feature-desc {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .tech-stack {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 80px 0;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .tech-item {
+            text-align: center;
+            padding: 30px 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .tech-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .tech-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #3498db;
+        }
+
+        .roi-section {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .roi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .roi-card {
+            background: rgba(255,255,255,0.15);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .contact {
+            background: #f8f9fa;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .contact-info {
+            background: white;
+            padding: 60px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .floating-elements::before,
+        .floating-elements::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            animation: float 20s infinite linear;
+        }
+
+        .floating-elements::before {
+            width: 200px;
+            height: 200px;
+            top: 20%;
+            left: -10%;
+            animation-delay: 0s;
+        }
+
+        .floating-elements::after {
+            width: 150px;
+            height: 150px;
+            top: 60%;
+            right: -5%;
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+            100% { transform: translateY(0px) rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .logo {
+                font-size: 3rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="gradient-bg">
+        <div class="floating-elements"></div>
+        <div class="hero">
+            <div class="container">
+                <div class="logo">P<span class="q">Q</span>XD</div>
+                <h1>Paciente Quirúrgico Digital</h1>
+                <p class="subtitle">Plataforma integral FHIR R4 para la transformación digital del cuidado quirúrgico cardiovascular</p>
+                <a href="#contact" class="cta-primary">Solicitar Demo Corporativa</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="metrics">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px;">
+                <div class="metric-card">
+                    <div class="metric-number">35%</div>
+                    <div class="metric-label">Reducción en Readmisiones</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">48%</div>
+                    <div class="metric-label">Mejora en Adherencia Post-Op</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">60%</div>
+                    <div class="metric-label">Optimización de Tiempos</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">25%</div>
+                    <div class="metric-label">Reducción de Costos</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Solución End-to-End para MedTech</h2>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">🔬</div>
+                    <h3 class="feature-title">Digital Twins Cardiovasculares</h3>
+                    <p class="feature-desc">Representaciones digitales avanzadas basadas en datos multimodales (TC, RM, ecocardiografía) para planificación quirúrgica precisa y simulación de escenarios clínicos.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔗</div>
+                    <h3 class="feature-title">Interoperabilidad FHIR R4</h3>
+                    <p class="feature-desc">Integración nativa con sistemas hospitalarios existentes mediante estándares FHIR R4, garantizando intercambio seguro y eficiente de datos clínicos.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title">Analytics e IA Predictiva</h3>
+                    <p class="feature-desc">Algoritmos ARGENSCORE integrados con machine learning para evaluación de riesgo quirúrgico y predicción de resultados clínicos.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏥</div>
+                    <h3 class="feature-title">Workflow Integrado</h3>
+                    <p class="feature-desc">Gestión completa del paciente quirúrgico desde derivación hasta rehabilitación, optimizando recursos y mejorando outcomes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="tech-stack">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Arquitectura Tecnológica Enterprise</h2>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <h4>FHIR R4</h4>
+                    <p>Estándar de interoperabilidad HL7</p>
+                </div>
+                <div class="tech-item">
+                    <h4>AWS Cloud</h4>
+                    <p>Infraestructura escalable y segura</p>
+                </div>
+                <div class="tech-item">
+                    <h4>Digital Twins</h4>
+                    <p>Gemelos digitales de pacientes</p>
+                </div>
+                <div class="tech-item">
+                    <h4>Machine Learning</h4>
+                    <p>IA predictiva para outcomes</p>
+                </div>
+                <div class="tech-item">
+                    <h4>Real-time Monitoring</h4>
+                    <p>Dispositivos IoT integrados</p>
+                </div>
+                <div class="tech-item">
+                    <h4>API Security</h4>
+                    <p>OAuth 2.0 y SMART on FHIR</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="roi-section">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">ROI Comprobado para Organizaciones MedTech</h2>
+            <div class="roi-grid">
+                <div class="roi-card">
+                    <h3>Reducción de Costos</h3>
+                    <p>Optimización de recursos hospitalarios, reducción de estancia media y disminución de complicaciones post-operatorias.</p>
+                </div>
+                <div class="roi-card">
+                    <h3>Mejores Outcomes</h3>
+                    <p>Mayor satisfacción del paciente, reducción de readmisiones y mejora en adherencia a tratamientos.</p>
+                </div>
+                <div class="roi-card">
+                    <h3>Innovación Competitiva</h3>
+                    <p>Diferenciación en el mercado mediante tecnología de vanguardia y enfoques basados en evidencia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Transforme su Organización MedTech</h2>
+            <div class="contact-info">
+                <h3 style="margin-bottom: 30px; font-size: 1.5rem; color: #2c3e50;">Dr. Alejandro Sergio D'Alessandro</h3>
+                <p style="margin-bottom: 20px; color: #666; font-size: 1.1rem;">Cardiólogo & Fundador de PQxD</p>
+                <p style="margin-bottom: 30px; color: #666;">Soluciones enterprise para J&J MedTech, Boston Scientific, Medtronic y organizaciones líderes en innovación cardiovascular.</p>
+                <div style="margin-bottom: 30px;">
+                    <a href="mailto:adalessandro@epa-bienestar.com" style="color: #667eea; text-decoration: none; font-weight: 600; font-size: 1.1rem;">adalessandro@epa-bienestar.com</a>
+                </div>
+                <div style="margin-bottom: 30px;">
+                    <a href="https://www.linkedin.com/in/drdalessandro/" target="_blank" style="color: #667eea; text-decoration: none; font-weight: 600;">LinkedIn Profile →</a>
+                </div>
+                <a href="mailto:adalessandro@epa-bienestar.com?subject=Demo%20PQxD%20Enterprise" class="cta-primary">Agendar Demo Ejecutiva</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add floating animation to cards on scroll
+        const cards = document.querySelectorAll('.feature-card, .metric-card, .roi-card');
+        
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        cards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
