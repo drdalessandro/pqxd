@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PQxD - Paciente Quirúrgico Digital | Innovación en Salud Cardiovascular</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+        }
+
+        .gradient-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.1) 0%, transparent 50%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero {
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            gap: 15px;
+        }
+
+        .logo-img {
+            width: 80px;
+            height: 80px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="20" fill="%23667eea"/><text x="50" y="35" text-anchor="middle" fill="white" font-family="Arial" font-weight="bold" font-size="16">PQ</text><text x="50" y="55" text-anchor="middle" fill="%23ff4757" font-family="Arial" font-weight="bold" font-size="20">X</text><text x="50" y="75" text-anchor="middle" fill="white" font-family="Arial" font-weight="bold" font-size="16">D</text></svg>') center/contain no-repeat;
+        }
+
+        .logo-text {
+            font-size: 4rem;
+            font-weight: 900;
+            letter-spacing: -2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            color: white;
+        }
+
+        .logo-text .q {
+            color: #ff4757;
+            font-size: 4.5rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero .subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-primary {
+            background: linear-gradient(45deg, #ff4757, #ff3742);
+            color: white;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 8px 25px rgba(255, 71, 87, 0.3);
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 71, 87, 0.4);
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: #2c3e50;
+            font-weight: 700;
+        }
+
+        .metrics {
+            background: #f8f9fa;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            padding: 60px 0;
+        }
+
+        .metric-card {
+            text-align: center;
+            background: white;
+            padding: 40px 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .metric-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .metric-label {
+            font-size: 1.1rem;
+            color: #666;
+            font-weight: 600;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            border-left: 5px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .feature-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .feature-desc {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .tech-stack {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 80px 0;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .tech-item {
+            text-align: center;
+            padding: 30px 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .tech-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .tech-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #3498db;
+        }
+
+        .roi-section {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .roi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .roi-card {
+            background: rgba(255,255,255,0.15);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .contact {
+            background: #f8f9fa;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .contact-info {
+            background: white;
+            padding: 60px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .floating-elements::before,
+        .floating-elements::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            animation: float 20s infinite linear;
+        }
+
+        .floating-elements::before {
+            width: 200px;
+            height: 200px;
+            top: 20%;
+            left: -10%;
+            animation-delay: 0s;
+        }
+
+        .floating-elements::after {
+            width: 150px;
+            height: 150px;
+            top: 60%;
+            right: -5%;
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+            100% { transform: translateY(0px) rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .logo-text {
+                font-size: 3rem;
+            }
+            
+            .logo-img {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .prequirurgico-hero div[style*="grid-template-columns: 1fr 1fr"] {
+                grid-template-columns: 1fr !important;
+                gap: 40px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="gradient-bg">
+        <div class="floating-elements"></div>
+        <div class="hero">
+            <div class="container">
+                <div class="logo">
+                    <div class="logo-img"></div>
+                    <div class="logo-text">P<span class="q">Q</span>XD</div>
+                </div>
+                <h1>Paciente Quirúrgico Digital</h1>
+                <p class="subtitle">Revolución en el proceso pre-quirúrgico cardiovascular: Portal unificado con IA para cardiólogos, evaluación integral y optimización de estudios complementarios</p>
+                <a href="#contact" class="cta-primary">Solicitar Demo Corporativa</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="prequirurgico-hero" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 100px 0;">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 60px;">
+                <h2 style="font-size: 3rem; font-weight: 700; margin-bottom: 20px;">Revolución en el Proceso Pre-Quirúrgico</h2>
+                <p style="font-size: 1.3rem; opacity: 0.9; max-width: 800px; margin: 0 auto;">Transformamos el workflow más crítico: desde la derivación cardiológica hasta la decisión quirúrgica</p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1000px; margin: 0 auto;">
+                <div>
+                    <h3 style="font-size: 1.8rem; margin-bottom: 25px; color: #3498db;">🏥 consultorio.pacientequirurgico.com</h3>
+                    <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 30px;">Portal unificado donde cardiólogos acceden a toda la información del paciente en tiempo real, con IA que procesa y resume automáticamente los datos clínicos más relevantes.</p>
+                    
+                    <div style="background: rgba(255,255,255,0.15); padding: 25px; border-radius: 15px; backdrop-filter: blur(10px);">
+                        <h4 style="margin-bottom: 15px; color: #f39c12;">⚡ IA Predictiva Integrada</h4>
+                        <p style="font-size: 0.95rem;">Análisis automático de determinantes de salud para predecir evolución intra y postoperatoria</p>
+                    </div>
+                </div>
+                
+                <div style="background: rgba(255,255,255,0.1); padding: 40px; border-radius: 20px; backdrop-filter: blur(10px);">
+                    <h4 style="font-size: 1.4rem; margin-bottom: 20px; text-align: center;">📊 Reducción de Tiempos</h4>
+                    <div style="text-align: center;">
+                        <div style="font-size: 3rem; font-weight: 900; color: #2ecc71; margin-bottom: 10px;">73%</div>
+                        <p>Menos tiempo en coordinación de estudios pre-quirúrgicos</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="estudios-section" style="padding: 80px 0; background: #f8f9fa;">
+        <div class="container">
+            <h2 class="section-title">Gestión Inteligente de Estudios Complementarios</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-bottom: 60px;">
+                <div class="estudio-card" style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-left: 4px solid #e74c3c;">
+                    <h4 style="color: #e74c3c; margin-bottom: 15px; font-size: 1.2rem;">🩸 Laboratorio</h4>
+                    <p style="color: #666; font-size: 0.95rem;">Integración automática de resultados de laboratorio con alertas inteligentes para valores críticos</p>
+                </div>
+                
+                <div class="estudio-card" style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-left: 4px solid #3498db;">
+                    <h4 style="color: #3498db; margin-bottom: 15px; font-size: 1.2rem;">📸 Rx Tórax</h4>
+                    <p style="color: #666; font-size: 0.95rem;">Análisis radiológico asistido por IA con detección automática de hallazgos relevantes</p>
+                </div>
+                
+                <div class="estudio-card" style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-left: 4px solid #9b59b6;">
+                    <h4 style="color: #9b59b6; margin-bottom: 15px; font-size: 1.2rem;">❤️ Ecocardiograma Doppler</h4>
+                    <p style="color: #666; font-size: 0.95rem;">Interpretación automática de parámetros ecocardiográficos con scoring de riesgo</p>
+                </div>
+                
+                <div class="estudio-card" style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-left: 4px solid #f39c12;">
+                    <h4 style="color: #f39c12; margin-bottom: 15px; font-size: 1.2rem;">🔍 TC / RM</h4>
+                    <p style="color: #666; font-size: 0.95rem;">Procesamiento de imágenes avanzadas para creación de Digital Twins cardiovasculares</p>
+                </div>
+            </div>
+            
+            <div style="background: linear-gradient(45deg, #667eea, #764ba2); color: white; padding: 50px; border-radius: 20px; text-align: center;">
+                <h3 style="font-size: 1.8rem; margin-bottom: 20px;">🤖 IA Unificada de Estudios</h3>
+                <p style="font-size: 1.1rem; opacity: 0.9; max-width: 600px; margin: 0 auto;">Un solo dashboard donde toda la información de estudios complementarios se integra, analiza y presenta con recomendaciones basadas en evidencia</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="evaluacion-integral" style="padding: 80px 0;">
+        <div class="container">
+            <h2 class="section-title">Evaluación Pre-Quirúrgica Integral</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px;">
+                <div class="eval-card" style="background: linear-gradient(135deg, #ff6b6b, #ee5a24); color: white; padding: 40px; border-radius: 20px; box-shadow: 0 15px 40px rgba(238, 90, 36, 0.3);">
+                    <div style="font-size: 3rem; margin-bottom: 20px;">🧠</div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 20px;">Psico-Profilaxis Pre-Quirúrgica</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 10px;">✓ Evaluación del estado emocional</li>
+                        <li style="margin-bottom: 10px;">✓ Manejo de ansiedad pre-operatoria</li>
+                        <li style="margin-bottom: 10px;">✓ Preparación psicológica personalizada</li>
+                        <li>✓ Expectativas y visión de futuro</li>
+                    </ul>
+                </div>
+                
+                <div class="eval-card" style="background: linear-gradient(135deg, #2ecc71, #27ae60); color: white; padding: 40px; border-radius: 20px; box-shadow: 0 15px 40px rgba(39, 174, 96, 0.3);">
+                    <div style="font-size: 3rem; margin-bottom: 20px;">🥗</div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 20px;">Estado Nutricional</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 10px;">✓ Evaluación nutricional completa</li>
+                        <li style="margin-bottom: 10px;">✓ Optimización pre-quirúrgica</li>
+                        <li style="margin-bottom: 10px;">✓ Planes personalizados</li>
+                        <li>✓ Seguimiento metabólico</li>
+                    </ul>
+                </div>
+                
+                <div class="eval-card" style="background: linear-gradient(135deg, #3498db, #2980b9); color: white; padding: 40px; border-radius: 20px; box-shadow: 0 15px 40px rgba(41, 128, 185, 0.3);">
+                    <div style="font-size: 3rem; margin-bottom: 20px;">🎯</div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 20px;">Determinantes de Salud</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 10px;">✓ Factores sociodemográficos</li>
+                        <li style="margin-bottom: 10px;">✓ Comorbilidades</li>
+                        <li style="margin-bottom: 10px;">✓ Hábitos de vida</li>
+                        <li>✓ Predicción de outcomes</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Plataforma Integral para Cardiólogos</h2>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">🖥️</div>
+                    <h3 class="feature-title">Portal Unificado</h3>
+                    <p class="feature-desc"><strong>consultorio.pacientequirurgico.com</strong> - Acceso centralizado a toda la información del paciente: estudios, evolución, scoring de riesgo y recomendaciones de IA en una sola plataforma.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h3 class="feature-title">IA de Resumen Clínico</h3>
+                    <p class="feature-desc">Procesamiento inteligente de todos los estudios complementarios que genera resúmenes automáticos y alertas sobre hallazgos críticos para la decisión quirúrgica.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📋</div>
+                    <h3 class="feature-title">Evaluación Integral Pre-Op</h3>
+                    <p class="feature-desc">Módulos especializados para psico-profilaxis, evaluación nutricional, análisis de expectativas y determinantes de salud que impactan en outcomes quirúrgicos.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title">Workflow Optimizado</h3>
+                    <p class="feature-desc">Automatización del proceso de solicitud, seguimiento y análisis de estudios complementarios con integración FHIR R4 a sistemas hospitalarios existentes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="tech-stack">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Tecnología Pre-Quirúrgica Avanzada</h2>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <h4>FHIR R4 Integration</h4>
+                    <p>Estándar de interoperabilidad para estudios complementarios</p>
+                </div>
+                <div class="tech-item">
+                    <h4>IA de Resumen Clínico</h4>
+                    <p>Procesamiento automático de Lab, Rx, Eco, TC y RM</p>
+                </div>
+                <div class="tech-item">
+                    <h4>Portal Cardiológico</h4>
+                    <p>consultorio.pacientequirurgico.com - Acceso unificado</p>
+                </div>
+                <div class="tech-item">
+                    <h4>ARGENSCORE AI</h4>
+                    <p>Algoritmo de riesgo quirúrgico cardiovascular</p>
+                </div>
+                <div class="tech-item">
+                    <h4>Psico-Profilaxis Digital</h4>
+                    <p>Evaluación emocional y preparación psicológica</p>
+                </div>
+                <div class="tech-item">
+                    <h4>Análisis Nutricional</h4>
+                    <p>Optimización del estado nutricional pre-op</p>
+                </div>
+                <div class="tech-item">
+                    <h4>Digital Twins CV</h4>
+                    <p>Modelos 3D a partir de TC y RM</p>
+                </div>
+                <div class="tech-item">
+                    <h4>Determinantes de Salud</h4>
+                    <p>IA predictiva para outcomes quirúrgicos</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="roi-section">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Impacto Medible en el Pre-Quirúrgico</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 50px;">
+                <div style="text-align: center; background: rgba(255,255,255,0.15); padding: 30px; border-radius: 15px; backdrop-filter: blur(10px);">
+                    <div style="font-size: 3rem; font-weight: 900; color: #2ecc71; margin-bottom: 10px;">73%</div>
+                    <div style="font-size: 1.1rem;">Reducción en tiempos de coordinación</div>
+                </div>
+                <div style="text-align: center; background: rgba(255,255,255,0.15); padding: 30px; border-radius: 15px; backdrop-filter: blur(10px);">
+                    <div style="font-size: 3rem; font-weight: 900; color: #3498db; margin-bottom: 10px;">89%</div>
+                    <div style="font-size: 1.1rem;">Mejora en preparación psico-emocional</div>
+                </div>
+                <div style="text-align: center; background: rgba(255,255,255,0.15); padding: 30px; border-radius: 15px; backdrop-filter: blur(10px);">
+                    <div style="font-size: 3rem; font-weight: 900; color: #f39c12; margin-bottom: 10px;">65%</div>
+                    <div style="font-size: 1.1rem;">Reducción en cancelaciones de cirugía</div>
+                </div>
+                <div style="text-align: center; background: rgba(255,255,255,0.15); padding: 30px; border-radius: 15px; backdrop-filter: blur(10px);">
+                    <div style="font-size: 3rem; font-weight: 900; color: #e74c3c; margin-bottom: 10px;">45%</div>
+                    <div style="font-size: 1.1rem;">Mejora en predicción de outcomes</div>
+                </div>
+            </div>
+            <div class="roi-grid">
+                <div class="roi-card">
+                    <h3>Eficiencia Cardiológica</h3>
+                    <p>Los cardiólogos acceden a información consolidada y procesada por IA, reduciendo significativamente el tiempo de evaluación pre-quirúrgica y mejorando la toma de decisiones.</p>
+                </div>
+                <div class="roi-card">
+                    <h3>Preparación Integral</h3>
+                    <p>Evaluación completa que incluye aspectos psico-emocionales, nutricionales y determinantes de salud, resultando en pacientes mejor preparados y outcomes superiores.</p>
+                </div>
+                <div class="roi-card">
+                    <h3>Valor para MedTech</h3>
+                    <p>Plataforma que genera datos estructurados en FHIR R4 para investigación clínica, desarrollo de productos y validación de dispositivos cardiovasculares.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Transforme su Organización MedTech</h2>
+            <div class="contact-info">
+                <h3 style="margin-bottom: 30px; font-size: 1.5rem; color: #2c3e50;">Dr. Alejandro Sergio D'Alessandro</h3>
+                <p style="margin-bottom: 20px; color: #666; font-size: 1.1rem;">Cardiólogo & Fundador de PQxD</p>
+                <p style="margin-bottom: 30px; color: #666;">Soluciones enterprise para J&J MedTech, Boston Scientific, Medtronic y organizaciones líderes en innovación cardiovascular.</p>
+                <div style="margin-bottom: 30px;">
+                    <a href="mailto:adalessandro@epa-bienestar.com" style="color: #667eea; text-decoration: none; font-weight: 600; font-size: 1.1rem;">adalessandro@epa-bienestar.com</a>
+                </div>
+                <div style="margin-bottom: 30px;">
+                    <a href="https://www.linkedin.com/in/drdalessandro/" target="_blank" style="color: #667eea; text-decoration: none; font-weight: 600;">LinkedIn Profile →</a>
+                </div>
+                <a href="mailto:adalessandro@epa-bienestar.com?subject=Demo%20PQxD%20Enterprise" class="cta-primary">Agendar Demo Ejecutiva</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add floating animation to cards on scroll
+        const cards = document.querySelectorAll('.feature-card, .metric-card, .roi-card');
+        
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        cards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
